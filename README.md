@@ -104,7 +104,7 @@ _The following arguments are supported:_
 
 ---
 
-_The_ **\_advanced\_security\_options_** _block supports the following attributes:_
+_The **advanced\_security\_options** block supports the following attributes:_
 
 * **_enabled_** _- (Required, Forces new resource) Whether advanced security is enabled_
 * **_internal\_user\_database\_enabled_** _- (Optional, Default: false) Whether the internal user database is enabled. If not set, defaults to false by the AWS API._
