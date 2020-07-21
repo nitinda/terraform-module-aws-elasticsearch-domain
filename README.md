@@ -136,9 +136,9 @@ _In addition to all arguments above, the following attributes are exported:_
 
 * _**arn** - Amazon Resource Name (ARN) of the domain._
 * _**domain\_id** - Unique identifier for the domain._
-* domain_name - The name of the Elasticsearch domain.
-* endpoint - Domain-specific endpoint used to submit index, search, and data upload requests.
-* kibana_endpoint - Domain-specific endpoint for kibana without https scheme.
+* _**domain\_name** - The name of the Elasticsearch domain._
+* _**endpoint** - Domain-specific endpoint used to submit index, search, and data upload requests._
+* _**kibana\_endpoint** - Domain-specific endpoint for kibana without https scheme._
 
 ---
 
