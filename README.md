@@ -102,30 +102,6 @@ _The following arguments are supported:_
 * **_domain\_endpoint\_options_** _- (Optional) Domain endpoint HTTP(S) related options. See below._
 * **_tags_** _- (Optional) A map of tags to assign to the resource_
 
----
-
-_The **advanced\_security\_options** block supports the following attributes:_
-
-* **_enabled_** _- (Required, Forces new resource) Whether advanced security is enabled_
-* **_internal\_user\_database\_enabled_** _- (Optional, Default: false) Whether the internal user database is enabled. If not set, defaults to false by the AWS API._
-* **_master\_user\_options_** _- (Optional) Credentials for the master user: username and password, or ARN_
- * **_master\_user\_arn_** _- (Optional) ARN for the master user. Only specify if **internal\_user\_database\_enabled** is not set or set to false)_
- * _**master\_user\_name** - (Optional) The master user's username, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if **internal\_user\_database\_enabled** is set to true._
- * _**master\_user\_password** - (Optional) The master user's password, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if **internal\_user\_database\_enabled** is set to true._
-
----
-
-_**ebs\_options** supports the following attributes:_
-
-* _**ebs\_enabled** - (Required) Whether EBS volumes are attached to data nodes in the domain._
-* _**volume\_type** - (Optional) The type of EBS volumes attached to data nodes._
-* _**volume\_size** - The size of EBS volumes attached to data nodes (in GB). Required if **ebs\_enabled** is set to true._
-* _**iops** - (Optional) The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only for the Provisioned IOPS EBS volume type._
-
----
-
-
-
 
 ---
 
