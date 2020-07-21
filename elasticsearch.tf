@@ -3,6 +3,7 @@ resource "aws_elasticsearch_domain" "elasticsearch_domain" {
   access_policies  = var.access_policies
   advanced_options = var.advanced_options
 
+
   dynamic "advanced_security_options" {
     for_each = var.advanced_security_options == {} ? [] : [var.advanced_security_options]
     content {
