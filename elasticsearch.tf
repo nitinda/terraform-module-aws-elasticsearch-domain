@@ -60,7 +60,7 @@ resource "aws_elasticsearch_domain" "elasticsearch_domain" {
       zone_awareness_enabled   = lookup(cluster_config.value, "zone_awareness_enabled", null)
 
       dynamic "zone_awareness_config" {
-        for_each = lookup(cluster_config.value, "zone_awareness_config", []) == [] ? [] : [lookup(icluster_config.value, "zone_awareness_config", [])]
+        for_each = lookup(cluster_config.value, "zone_awareness_config", []) == [] ? [] : [lookup(cluster_config.value, "zone_awareness_config", [])]
         content {
           availability_zone_count = lookup(zone_awareness_config.value, "availability_zone_count", null)
         }
