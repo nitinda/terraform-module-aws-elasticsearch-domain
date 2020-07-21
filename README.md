@@ -45,6 +45,26 @@ _Below we are able to check the resources that are being created as part of this
 
 _To use this module, add the following call to your code:_
 
+## _Example Usage_
+
+### _Basic Usage_
+
+```tf
+```
+
+
+### _Access Policy_
+
+```tf
+```
+
+### _Log Publishing to CloudWatch Logs_
+
+```tf
+```
+
+### _VPC based ES_
+
 ```tf
 module "elasticsearch_domain" {
   source = "git::https://github.com/nitinda/terraform-module-aws-elasticsearch-domain.git?ref=master"
@@ -53,26 +73,37 @@ module "elasticsearch_domain" {
     aws = aws.services
   }
 
-  name_prefix            = "lt-"
-  description            = "EC2 Launch Template"
-  ebs_optimized          = true
-  image_id               = var.image_id
-  monitoring             = { enabled = false }
-  tags                   = var.tags
-  vpc_security_group_ids = [ var.vpc_security_group_ids ]
-  user_data              = base64encode("${data.template_file.template_data.rendered}")
-  iam_instance_profile   = { name = module.iam_instance_profile_ec2.name }
-  block_device_mappings = []
-  tag_specifications    = [
+  domain_name           = "elasticsearch-domain"
+  elasticsearch_version = "6.3"
+
+  cluster_config = {
+    instance_type = "m4.large.elasticsearch"
+  }
+
+  vpc_options = {
+    subnet_ids = [
+      module.vpc_subnet_public_1a.id,
+      module.vpc_subnet_public_1b.id,
+    ]
+
+    security_group_ids = [ module.security_group_es.id ]
+  }
+
+  advanced_options = {
+    "rest.action.multi.allow_explicit_index" = "true"
+  }
+
+  snapshot_options = {
+    automated_snapshot_start_hour = 23
+  }
+
+  tags = merge(
+    var.common_tags,
     {
-      resource_type = "instance"
-      tags          = merge(var.common_tags, map("Name", "demo-ec2-instance",))
-    },
-    {
-      resource_type = "volume"
-      tags          = merge(var.common_tags, map("Name", "demo-ec2-instance-volume",))
+      Environment = "prod"
+      Name        = "elasticsearch-domain"
     }
-  ]
+  )
 }
 ```
 
